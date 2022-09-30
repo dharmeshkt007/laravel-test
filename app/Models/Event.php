@@ -7,4 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
+    protected $table = "events";
+    protected $fillable = [
+    'name'
+    ];
+
+    public function workshops()
+    {
+        return $this->hasMany('App\Models\Workshop','event_id','id');
+    }
+
 }
