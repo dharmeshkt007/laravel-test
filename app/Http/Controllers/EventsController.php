@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Workshop;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Date;
 use Response;
-
+use DateTime;
 class EventsController extends BaseController
 {
     public function getWarmupEvents() {
@@ -183,6 +184,20 @@ class EventsController extends BaseController
      */
 
     public function getFutureEventsWithWorkshops() {
-        throw new \Exception('implement in coding task 2');
+        $events = Event::get();
+        foreach($events as $events_list){
+            // echo "<pre>";
+            // echo $events_ist->created_at;
+            $workshops = Workshop::get();
+            foreach($workshops as $workshops_list){
+                if($workshops_list->start == $events_list->created_at){
+                    echo $workshops_list->id;
+                }
+            }
+
+            // if()
+        }
+        // dd($events);
+        // throw new \Exception('implement in coding task 2');
     }
 }
